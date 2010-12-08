@@ -1,45 +1,25 @@
-#include "poset homology\Perm.h"
-#include <iostream>
-#include <stdio.h>
+use Perm;
 
-void main(void) {
+def main() {
+  
+	writeln("Testing constructor");
+
+	var sigma: Permutation;
+	var tau = new Permutation(3);
 	
-	cout << "\nTesting constructor";
+	var Sn: Vector(Permutation);
+	writeln("Getting list of all permutations of a 4-element set");
 
-	Perm sigma;
-	Perm tau(3);
-	list<Perm> Sn;
+	Sn = permutations(3);
+	Sn = permutations(4);
 
-	cout << "\nGetting list of all permutations of a 4 element set";
-	Sn = Perms(3);
-	char ch = getchar();
-	Sn = Perms(4);
+	writeln("There were ", Sn.size, " permutations");
+	writeln("Here they are along with their signs");
+	for x in Sn do
+	  writeln(x);
+	  
+	var A: [1..3] int = (1,3,2);
+	var B: [1..3] int = (2,3,1);
 	
-
-	cout << "\nThere were " << Sn.size() << " permutations";
-	cout << "\n Here they are along with their signs";
-	for (list<Perm>::iterator iter = Sn.begin(); iter != Sn.end(); ++iter) {
-	 	cout << "\n" << *iter;
-		cout << " has sign " << sign(*iter);
-	}
-
-	cout << "\nThere were " << Sn.size() << " permutations";
-
-
-
-	// Also will test PermMake here
-	list<int> A, B;
-
-	A.push_back(1);
-	A.push_back(3);
-	A.push_back(2);
-	B.push_back(2);
-	B.push_back(3);
-	B.push_back(1);
-
-	Perm sigma2 = PermMake(A, B);
-	cout << sigma2;
-	int i;
-	cin >> i;
-	
+	writeln(new Permutation(A, B));
 }

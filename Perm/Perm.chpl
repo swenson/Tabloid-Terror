@@ -68,8 +68,8 @@ module Perm {
     }
     
     def copy() {
-      var temp = Permutation(perm.size);
-      for i in perm.domain do
+      var temp = new Permutation(perm.size);
+      for i in perm.dom do
         temp[i] = perm[i];
       return temp;
     }
@@ -157,12 +157,17 @@ module Perm {
         newperm[h] = this[j1];
       }
       return newperm;
-    }
-
-    
+    } 
   }
   
   def permutations(n:int) {
+    var v = new Vector(Permutation);
+    for x in permutations_iter(n) do
+      v.push(x);
+    return v;
+  }
+  
+  def permutations_iter(n:int) {
     var iter = new Permutation(n);
     for i in 1..n do
       iter[i] = i;
@@ -170,9 +175,9 @@ module Perm {
     
     var m = 1;
     for m in 1..(factorial(n) + 1) {
-      iter = iter.next();
+      iter = iter.next(m);
       yield iter;
+    }
   }
-}
   
 }
